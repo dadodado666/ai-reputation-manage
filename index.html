@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moj Brezplačni AI Pomočnik</title>
-    <script src="https://puter.com"></script>
+    <!-- Uradna v2 različica knjižnice Puter -->
+    <script src="https://js.puter.com/v2/"></script>
     <style>
         body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; text-align: center; }
         textarea, input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
@@ -44,12 +45,14 @@
             const navodilo = `Dobil si spletno oceno za podjetje "${imePodjetja}". Besedilo ocene je: "${tekstOcene}". Napiši kratek, prijazen in profesionalen odgovor v slovenščini, ki ga bo lastnik podjetja objavil kot odgovor stranki na Googlu.`;
 
             try {
-                // Popravljen in preizkušen klic za brezplačni AI
-                const response = await puter.ai.txt2txt(navodilo);
-                document.getElementById('aiTekst').innerText = response;
+                // URADNA FUNKCIJA ZA LETO 2026
+                const response = await puter.ai.chat(navodilo);
+                
+                // Puter vrne celoten objekt, odgovor preberemo iz text lastnosti
+                document.getElementById('aiTekst').innerText = response.text;
             } catch (error) {
                 console.error(error);
-                document.getElementById('aiTekst').innerText = "Prišlo je do napake pri komunikaciji z AI.";
+                document.getElementById('aiTekst').innerText = "Prišlo je do napake. Preverite, če vam je brskalnik blokiral pojavno okno (Popup) za potrditev.";
             }
         }
     </script>
