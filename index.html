@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moj Brezplačni AI Pomočnik</title>
-    <!-- Vključimo brezplačno knjižnico Puter za dostop do AI brez ključev -->
-    <script src="https://js.puter.com/v2/"></script>
+    <!-- Brezplačna knjižnica Puter za dostop do AI brez ključev -->
+    <script src="https://puter.com"></script>
     <style>
         body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; text-align: center; }
         textarea, input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
@@ -20,7 +20,7 @@
     <p style="color: #666; font-size: 14px;">Brez registracije in brez API ključev.</p>
 
     <input type="text" id="imePodjetja" placeholder="Ime podjetja (npr. Frizerski salon Karmen)">
-    <textarea id="tekstOcene" rows="4" placeholder="Prilepite oceno stranke, ki jo je pustila na Googlu..."></textarea>
+    <textarea id="tekstOcene" rows="4" placeholder="Prilepite oceno stranke iz Googla..."></textarea>
     
     <button onclick="generirajOdgovor()">Ustvari AI Odgovor ✨</button>
 
@@ -39,18 +39,14 @@
                 return;
             }
 
-            // Prikažemo okno za rezultat in izpišemo, da AI razmišlja
             document.getElementById('aiTekst').innerText = "Umetna inteligenca Gemini razmišlja o odgovoru...";
             document.getElementById('rezultat').style.display = "block";
 
-            // Sestavimo navodilo za AI
             const navodilo = `Dobil si spletno oceno za podjetje "${imePodjetja}". Besedilo ocene je: "${tekstOcene}". Napiši kratek, prijazen in profesionalen odgovor v slovenščini, ki ga bo lastnik podjetja objavil kot odgovor stranki na Googlu.`;
 
             try {
-                // Pokličemo Google Gemini preko Puter knjižnice brez kakršnih koli ključev!
+                // Pokličemo Google Gemini preko Puter knjižnice brez ključev
                 const response = await puter.ai.chat(navodilo, { model: 'google/gemini-2.5-flash' });
-                
-                // Izpišemo dobljen odgovor na zaslon
                 document.getElementById('aiTekst').innerText = response.message.content;
             } catch (error) {
                 console.error(error);
