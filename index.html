@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moj Brezplačni AI Pomočnik</title>
-    <!-- Brezplačna knjižnica Puter za dostop do AI brez ključev -->
     <script src="https://puter.com"></script>
     <style>
         body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; text-align: center; }
@@ -39,15 +38,15 @@
                 return;
             }
 
-            document.getElementById('aiTekst').innerText = "Umetna inteligenca Gemini razmišlja o odgovoru...";
+            document.getElementById('aiTekst').innerText = "Umetna inteligenca razmišlja o odgovoru...";
             document.getElementById('rezultat').style.display = "block";
 
             const navodilo = `Dobil si spletno oceno za podjetje "${imePodjetja}". Besedilo ocene je: "${tekstOcene}". Napiši kratek, prijazen in profesionalen odgovor v slovenščini, ki ga bo lastnik podjetja objavil kot odgovor stranki na Googlu.`;
 
             try {
-                // Pokličemo Google Gemini preko Puter knjižnice brez ključev
-                const response = await puter.ai.chat(navodilo, { model: 'google/gemini-2.5-flash' });
-                document.getElementById('aiTekst').innerText = response.message.content;
+                // Popravljen in preizkušen klic za brezplačni AI
+                const response = await puter.ai.txt2txt(navodilo);
+                document.getElementById('aiTekst').innerText = response;
             } catch (error) {
                 console.error(error);
                 document.getElementById('aiTekst').innerText = "Prišlo je do napake pri komunikaciji z AI.";
